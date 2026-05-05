@@ -4,8 +4,11 @@ THWS Software Testing Project: Gatling load and performance tests for imgproxy.
 
 ## Team
 | Name | Simulations |
+
 | Adrian | BaselineSimulation, StandardLoadSimulation |
+
 | Mallory | StressSimulation, SpikeSimulation |
+
 | Giuliano | SoakSimulation, ImageSpecificSimulation |
 
 ## Testing Target (hosted by Adrian)
@@ -23,7 +26,8 @@ mvn gatling:test
 
 ## Results
 Reports are generated automatically in target/gatling/, open index.html in a browser to view each comprehensive report.
+
 A report is generated for each simulation type every time the test is ran.
 
 ## PMO - Formatter
-Import PMO - Formatter.xml in Eclipse as per the project specifications.
+Import PMO - Formatter.xml in Eclipse as per the project specifications. Ensure to activate in save actions.
