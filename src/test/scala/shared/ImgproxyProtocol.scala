@@ -5,11 +5,10 @@ import io.gatling.http.Predef._
 
 object ImgproxyProtocol {
 
-  val baseUrl = "https://imgproxy-st.tuxed.dev"
+	val baseUrl = "https://imgproxy-st.tuxed.dev"
 
-  val httpProtocol = http
-    .baseUrl(baseUrl)
-    .acceptHeader("image/webp,image/*,*/*")
-    .acceptEncodingHeader("gzip, deflate, br")
-    .userAgentHeader("Gatling LoadTest - ImgTestSquad/1.0")
+	val httpProtocol = http
+    	.baseUrl(baseUrl)
+    	.acceptHeader("image/*")
+    	.userAgentHeader("Gatling LoadTest - ImgTestSquad")
 }
