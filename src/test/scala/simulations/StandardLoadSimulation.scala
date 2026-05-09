@@ -5,28 +5,16 @@ import io.gatling.http.Predef._
 import shared.ImgproxyProtocol
 import shared.ImagePaths
 import shared.ClientProfiles
+import shared.DisplayFeeder
 
 class StandardLoadSimulation extends Simulation {
 
 	val clientId: String = System.getProperty("clientId", "A")
 	val client = ClientProfiles.all.find(_.id == clientId).getOrElse(ClientProfiles.clientA)
 	val holdDuration: Int = 180
-	
-	val displayFeeder = Array(
-	    Map("imagePath" -> ImagePaths.mobile),
-	    Map("imagePath" -> ImagePaths.mobile),
-	    Map("imagePath" -> ImagePaths.mobile),
-	    Map("imagePath" -> ImagePaths.mobile),
-	    Map("imagePath" -> ImagePaths.mobile),
-	    Map("imagePath" -> ImagePaths.mobile),
-	   	Map("imagePath" -> ImagePaths.mobile),
-	    Map("imagePath" -> ImagePaths.desktop)
-	   	Map("imagePath" -> ImagePaths.desktop)
-	    Map("imagePath" -> ImagePaths.tablet)
-	).circular
 
 	val standardScenario = scenario(s"Standard Load - ${client.name}")
-		.feed(displayFeeder)
+		.feed(DisplayFeeder.feeder)
 		.exec(
 			http("standard_image_request")
 				.get("#{imagePath}")
