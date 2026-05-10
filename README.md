@@ -7,7 +7,7 @@ THWS Software Testing Project: Gatling load and performance tests for imgproxy.
 |---|---|
 | Adrian | BaselineSimulation, StandardLoadSimulation |
 | Mallory | StressSimulation |
-| Giuliano | SoakSimulation, SpikeSimulation |
+| Luciano | SoakSimulation, SpikeSimulation |
 
 ## Testing Target (hosted by Adrian)
 https://imgproxy-st.tuxed.dev
