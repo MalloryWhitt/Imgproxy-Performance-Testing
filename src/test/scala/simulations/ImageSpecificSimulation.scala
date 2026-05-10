@@ -10,7 +10,7 @@ class ImageSpecificSimulation extends Simulation {
   val holdDuration: Int = 15
 
   val badConfig1 = scenario(s"Bad Configuration 1 - ${client.name}")
-    .feed(DisplayFeeder.feeder("sh:1.5/q:100/ext:png/dpr:10/plain"))
+    .feed(DisplayFeeder.feeder("sh:1/q:100/ext:png/dpr:5/plain"))
     .exec(
       http("bad_configuration_image_request")
         .get("#{imagePath}")
