@@ -24,11 +24,14 @@ mvn gatling:test -Dgatling.simulationClass=simulations.BaselineSimulation
 
 ## Run StandardLoad, Stress, and ImageSpecific simulations with a specific client:
 mvn gatling:test -Dgatling.simulationClass=simulations.StandardLoadSimulation -DclientId=A
+
 mvn gatling:test -Dgatling.simulationClass=simulations.StressSimulation -DclientId=A
+
 mvn gatling:test -Dgatling.simulationClass=simulations.ImageSpecificSimulation -DclientId=A
 
 ## Run Soak and Spike simulations across all clients:
 mvn gatling:test -Dgatling.simulationClass=simulations.SpikeSimulation -DclientId=A
+
 mvn gatling:test -Dgatling.simulationClass=simulations.SoakSimulation -DclientId=A
 
 ## Run all simulations
