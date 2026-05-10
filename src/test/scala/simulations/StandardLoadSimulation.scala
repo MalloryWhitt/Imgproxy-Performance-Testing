@@ -2,10 +2,7 @@ package simulations
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import shared.ImgproxyProtocol
-import shared.ImagePaths
-import shared.ClientProfiles
-import shared.DisplayFeeder
+import shared._
 
 class StandardLoadSimulation extends Simulation {
 
@@ -14,7 +11,7 @@ class StandardLoadSimulation extends Simulation {
 	val holdDuration: Int = 180
 
 	val standardScenario = scenario(s"Standard Load - ${client.name}")
-		.feed(DisplayFeeder.feeder)
+		.feed(DisplayFeeder.feeder())
 		.exec(
 			http("standard_image_request")
 				.get("#{imagePath}")

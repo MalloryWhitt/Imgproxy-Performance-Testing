@@ -2,10 +2,7 @@ package simulations
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import shared.ImgproxyProtocol
-import shared.ImagePaths
-import shared.ClientProfiles
-import shared.DisplayFeeder
+import shared._
 
 import scala.concurrent.duration._
 
@@ -16,7 +13,7 @@ class SpikeSimulation extends Simulation {
     val populationBuilders = ClientProfiles.all.map { client =>
         
         val spikeScenario = scenario(s"Spike Test - ${client.name}")
-            .feed(DisplayFeeder.feeder)
+            .feed(DisplayFeeder.feeder())
             .exec(
                 http(s"spike_request_${client.name}")
                     .get("#{imagePath}")

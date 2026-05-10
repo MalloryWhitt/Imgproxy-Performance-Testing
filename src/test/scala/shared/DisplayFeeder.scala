@@ -1,19 +1,22 @@
 package shared
 
 import io.gatling.core.Predef._
+import shared.ImagePaths
 
 object DisplayFeeder {
-
-	val feeder = Array(
-        Map("imagePath" -> ImagePaths.mobile),
-        Map("imagePath" -> ImagePaths.mobile),
-        Map("imagePath" -> ImagePaths.mobile),
-        Map("imagePath" -> ImagePaths.mobile),
-        Map("imagePath" -> ImagePaths.mobile),
-        Map("imagePath" -> ImagePaths.mobile),
-        Map("imagePath" -> ImagePaths.mobile),
-        Map("imagePath" -> ImagePaths.desktop),
-        Map("imagePath" -> ImagePaths.desktop),
-        Map("imagePath" -> ImagePaths.tablet)
+  def feeder(format: String = "plain") = {
+    val paths = ImagePaths(format)
+    Array(
+      Map("imagePath" -> paths.mobile),
+      Map("imagePath" -> paths.mobile),
+      Map("imagePath" -> paths.mobile),
+      Map("imagePath" -> paths.mobile),
+      Map("imagePath" -> paths.mobile),
+      Map("imagePath" -> paths.mobile),
+      Map("imagePath" -> paths.mobile),
+      Map("imagePath" -> paths.desktop),
+      Map("imagePath" -> paths.desktop),
+      Map("imagePath" -> paths.tablet)
     ).circular
+  }
 }

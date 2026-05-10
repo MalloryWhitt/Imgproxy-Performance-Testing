@@ -8,7 +8,7 @@ object ImgproxyProtocol {
 	val baseUrl = "https://imgproxy-st.tuxed.dev"
 
 	val httpProtocol = http
-    	.baseUrl(baseUrl)
-    	.acceptHeader("image/*")
-    	.userAgentHeader("Gatling LoadTest - ImgTestSquad")
+		.baseUrl(baseUrl)
+		.acceptHeader("image/*")
+		.userAgentHeader("Gatling LoadTest - ImgTestSquad")
 }
