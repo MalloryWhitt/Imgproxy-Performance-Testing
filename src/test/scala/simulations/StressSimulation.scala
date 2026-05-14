@@ -8,7 +8,8 @@ class StressSimulation extends Simulation {
 
 	val clientId: String = System.getProperty("clientId", "A")
 	val client = ClientProfiles.all.find(_.id == clientId).getOrElse(ClientProfiles.clientA)
-	val holdDuration: Int = 240
+	val rampDuration: Int = 180
+	val stressFactor: Int = 10
 
 	val stressScenario = scenario(s"Stress Test - ${client.name}")
 			.feed(DisplayFeeder.feeder())
@@ -22,7 +23,7 @@ class StressSimulation extends Simulation {
 	    stressScenario.inject(
 	    	nothingFor(5),
 	    	rampUsersPerSec(0).to(client.normalRps).during(60),
-	        rampUsersPerSec(client.normalRps).to(client.normalRps * 10).during(holdDuration)
+	        rampUsersPerSec(client.normalRps).to(client.normalRps * stressFactor).during(rampDuration)
 	    )
 	    .protocols(ImgproxyProtocol.httpProtocol)
 	)

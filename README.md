@@ -3,31 +3,42 @@
 THWS Software Testing Project: Gatling load and performance tests for imgproxy.
 
 ## Team
-| Name    | Simulations                                |
-|---------|--------------------------------------------|
-| Adrian  | BaselineSimulation, StandardLoadSimulation |
-| Mallory | StressSimulation                           |
-| Luciano | SoakSimulation, SpikeSimulation            |
+| Name | Simulations |
+|---|---|
+| Adrian | ImageSpecificSimulation |
+| Mallory | BaselineSimulation, StandardLoadSimulation, StressSimulation |
+| Luciano | SoakSimulation, SpikeSimulation |
 
 ## Testing Target (hosted by Adrian)
 https://imgproxy-st.tuxed.dev
-
-Can also be run locally with the following command: `docker run -p 8080:8080 -it ghcr.io/imgproxy/imgproxy:latest`.
-
-Then the variable `baseUrl` in `src/test/scala/shared/ImgproxyProtocol.scala` needs to be changed to `http://localhost:8080
 
 ## Prerequisites
 - Java 21+
 - Maven 3.9+
 
-## Run a specific simulation (example: baseline)
-`mvn gatling:test -Dgatling.simulationClass=simulations.BaselineSimulation`
+## The tests are ran as simulations using clients with different levels of requests per second specified in ClientProfiles.scala
+Available clientIds: A (HouseOfFraser), B (Joules), C (Boden), D (Zalando), E (ASOS)
+
+## Run BaselineSimulation without a specific client across the three display types (mobile, tablet, and desktop):
+mvn gatling:test -Dgatling.simulationClass=simulations.BaselineSimulation
+
+## Run StandardLoad, Stress, and ImageSpecific simulations with a specific client:
+mvn gatling:test -Dgatling.simulationClass=simulations.StandardLoadSimulation -DclientId=A
+
+mvn gatling:test -Dgatling.simulationClass=simulations.StressSimulation -DclientId=A
+
+mvn gatling:test -Dgatling.simulationClass=simulations.ImageSpecificSimulation -DclientId=A
+
+## Run Soak and Spike simulations across all clients:
+mvn gatling:test -Dgatling.simulationClass=simulations.SpikeSimulation -DclientId=A
+
+mvn gatling:test -Dgatling.simulationClass=simulations.SoakSimulation -DclientId=A
 
 ## Run all simulations
-`mvn gatling:test`
+mvn gatling:test
 
 ## Results
-Reports are generated automatically in `target/gatling/`, open index.html in a browser to view each comprehensive report.
+Reports are generated automatically in target/gatling/. Open index.html in a browser to view each comprehensive report.
 
 A report is generated for each simulation type every time the test is ran.
 
